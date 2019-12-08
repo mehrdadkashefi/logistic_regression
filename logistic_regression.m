@@ -51,6 +51,17 @@ plot(cost_hist,'LineWidth',2)
 xlabel('iteration')
 ylabel('Cost')
 
+
+% Validation with Train set
+z = X_train * w_ini;
+y_train_pred = sig(z);
+
+y_train_pred(y_train_pred>=0.5) = 1;
+y_train_pred(y_train_pred<0.5) = 0;
+
+acc_train = sum(y_train==y_train_pred)/length(y_train);
+disp(['Train accuracy is ', num2str(acc_train)]);
+
 % Validation with test set
 z = X_test * w_ini;
 y_test_pred = sig(z);
